@@ -60,7 +60,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-mkdocs" class="md-skip">
+        <a href="#requirements" class="md-skip">
           Skip to content
         </a>
       
@@ -96,7 +96,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Welcome to MkDocs
+              Home
             
           </span>
         </div>
@@ -161,63 +161,15 @@
         
       
       
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Welcome to MkDocs
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
       <a href="." class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    Welcome to MkDocs
+    Home
   </span>
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
-    <span class="md-ellipsis">
-      Project layout
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -243,32 +195,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
-    <span class="md-ellipsis">
-      Commands
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
-    <span class="md-ellipsis">
-      Project layout
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -282,21 +208,82 @@
                   
 
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
+<p>Welcome to my default Data Project Repo.</p>
+<p>To use this project structure you will need to follow the steps below.</p>
+<h1 id="requirements">Requirements</h1>
+<p>To use this project properly, you will need to install:</p>
 <ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
+<li>
+<p><a href="https://www.python.org/downloads/">python</a></p>
+</li>
+<li>
+<p><a href="https://git-scm.com/downloads">git</a></p>
+</li>
+<li>
+<p><a href="https://pypi.org/project/pyenv/">pyenv</a></p>
+</li>
+<li>
+<p><a href="https://python-poetry.org/">poetry</a></p>
+</li>
 </ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
+<p>To install and configure Pyenv and Poetry in Windows, check <a href="https://www.youtube.com/watch?v=547Jr26duHQ&amp;pp=ygUgaG93IHRvIGluc3RhbGwgcG9ldHJ5IGluIHdpbmRvd3M%3D">this video</a>.
+To learn how to manage multiple python versions using pyenv, check <a href="https://realpython.com/intro-to-pyenv/">this article</a>.</p>
+<h1 id="installation-steps">Installation Steps</h1>
+<h2 id="git-clone">Git Clone</h2>
+<p>Open a terminal window (cmd, bash, or anything with git commands) and type:</p>
+<pre><code class="language-bash">git clone https://github.com/alanceloth/myDefaultDataProject.git
+cd myDefaultDataProject
 </code></pre>
+<h2 id="setting-up-the-environment">Setting up the environment</h2>
+<p>We will need python 3.11.5, and to get this version we will use pyenv.
+In the same terminal window, type:</p>
+<pre><code class="language-bash">pyenv update
+pyenv install --list
+</code></pre>
+<p>If you find the 3.11.5, then it's everithing correct.</p>
+<pre><code class="language-bash">pyenv install -v 3.11.5
+</code></pre>
+<p>To check the python versions installed, use this:</p>
+<pre><code class="language-bash">pyenv versions
+</code></pre>
+<p>You will notice that one of the versions will have a * symbol. This indicates that the system is using this version.
+You can also check the default python version used by the system with this:</p>
+<pre><code class="language-bash">python -v
+</code></pre>
+<p>Or:</p>
+<pre><code class="language-bash">which python
+</code></pre>
+<p>To use the project python version (3.11.5), use the command below:</p>
+<pre><code class="language-bash">pyenv local 3.11.5
+</code></pre>
+<h2 id="poetry">Poetry</h2>
+<p>To initialize the poetry in the project, type in the terminal:</p>
+<pre><code class="language-bash">poetry shell
+poetry env use 3.11.5
+poetry install
+</code></pre>
+<h2 id="testing">Testing</h2>
+<p>In the terminal:</p>
+<pre><code class="language-bash">duckdb
+</code></pre>
+<h1 id="folder-structure">Folder Structure</h1>
+<p>The basic project folder structure are shown below.</p>
+<pre><code class="language-bash">.
+├── .vscode
+├── docs
+├── scripts
+├── src
+└── tests
+</code></pre>
+<p>.vscode: VSCODE setting to the project session, like font size.</p>
+<p>docs: documentation folder, will store the mkdocs index.md</p>
+<p>scripts: any script related to automation, instalation, compilation, test execution.</p>
+<p>src: the source code folder</p>
+<p>tests: the automated test folder to check the source code</p>
+<h1 id="contact">Contact</h1>
+<p><a href="https://www.linkedin.com/in/alanlanceloth/">LinkedIn</a></p>
+<p>E-mail: <a href="mailto:alan.lanceloth@gmail.com">alan.lanceloth@gmail.com</a></p>
+<p><a href="https://github.com/alanceloth">GitHub</a></p>
 
 
 
