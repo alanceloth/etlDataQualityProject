@@ -5,3 +5,5 @@ theme:
 
 plugins:
   - mkdocstrings
+  - mermaid2
+  - search
