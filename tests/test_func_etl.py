@@ -1,5 +1,5 @@
 import pandas as pd
-from app.etl import transformar
+from app.etl import transform
 
 def test_calculo_valor_total_estoque():
     # Preparação
@@ -11,7 +11,7 @@ def test_calculo_valor_total_estoque():
     expected = pd.Series([200.0, 500.0], name='valor_total_estoque')
 
     # Ação
-    result = transformar(df)
+    result = transform(df)
 
     # Verificação
     pd.testing.assert_series_equal(result['valor_total_estoque'], expected)
@@ -26,7 +26,7 @@ def test_normalizacao_categoria():
     expected = pd.Series(['BRINQUEDOS', 'ELETRÔNICOS'], name='categoria_normalizada')
 
     # Ação
-    result = transformar(df)
+    result = transform(df)
 
     # Verificação
     pd.testing.assert_series_equal(result['categoria_normalizada'], expected)
@@ -41,7 +41,7 @@ def test_determinacao_disponibilidade():
     expected = pd.Series([False, True], name='disponibilidade')
 
     # Ação
-    result = transformar(df)
+    result = transform(df)
 
     # Verificação
     pd.testing.assert_series_equal(result['disponibilidade'], expected)

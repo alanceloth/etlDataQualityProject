@@ -4,7 +4,7 @@ import pandas as pd
 import pandera as pa
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
-from schema import ProductSchema, ProductSchemaKPI
+from app.schema import ProductSchema, ProductSchemaKPI
 import duckdb
 
 def load_settings():

@@ -15,7 +15,7 @@ graph TD;
 
 # Contrato de dados
 
-::: app.schema.ProdutoSchema
+::: app.schema.ProductSchema
 
 # Transformacoes
 
