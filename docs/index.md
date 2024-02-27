@@ -1,5 +1,7 @@
 # Data Quality Project
 
+## Fluxo
+
 ```mermaid
 graph TD;
     A[Configura Variáveis] --> B[Ler o Banco SQL];
@@ -10,6 +12,26 @@ graph TD;
     Y -->|Falha| Z[Alerta de Erro];
     Y -->|Sucesso| D[Salvar no DuckDB];
 ```
+
+# Contrato de dados
+
+::: app.schema.ProdutoSchema
+
+# Transformacoes
+
+## Configura Variáveis
+
+::: app.etl.load_settings
+
+## Ler o Banco SQL
+::: app.etl.extract
+
+## Transformar os KPIs
+
+::: app.etl.transform
+
+## Salvar no DuckDB
+::: app.etl.load
 
 
 -----------------------------------
