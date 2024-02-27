@@ -1,6 +1,3 @@
-
-Welcome to my default Data Project Repo.
-
 To use this project structure you will need to follow the steps below.
 
 # Requirements
@@ -35,8 +32,8 @@ For other OS, check it: [duckdb download page](https://duckdb.org/docs/installat
 ## Git Clone
 Open a terminal window (cmd, bash, or anything with git commands) and type:
 ```bash
-git clone https://github.com/alanceloth/myDefaultDataProject.git [NEW_PROJECT_NAME]
-cd [NEW_PROJECT_NAME]
+git clone https://github.com/alanceloth/etlDataQualityProject.git
+cd etlDataQualityProject
 git init
 ```
 

@@ -18,6 +18,10 @@ pymdown-extensions = "^10.7"
 mkdocs-bootstrap386 = "^0.0.2"
 mkdocs-mermaid2-plugin = "^1.1.1"
 pytest = "^8.0.1"
+pydantic = "^2.6.2"
+pandera = {extras = ["io"], version = "^0.18.0"}
+sqlalchemy = "^2.0.27"
+python-dotenv = "^1.0.1"
 
 
 [build-system]
