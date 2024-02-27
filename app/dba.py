@@ -2,20 +2,21 @@ import os
 import io
 import locale
 from pathlib import Path
-from dotenv import load_dotenv
+from dotenv import load_dotenv, dotenv_values
 from sqlalchemy import create_engine, MetaData
+from sqlalchemy.sql import text
 
 def load_settings():
     """Load settings from .env file"""
     env_path = Path.cwd() / '.env'
-    load_dotenv(dotenv_path=env_path)
-
+    #load_dotenv(dotenv_path=env_path)
+    env = dotenv_values(env_path, encoding="utf-8")
     settings = {
-        "db_host": os.getenv("POSTGREST_HOST"),
-        "db_user": os.getenv("POSTGREST_USER"),
-        "db_pass": os.getenv("POSTGREST_PASSWORD"),
-        "db_port": os.getenv("POSTGREST_PORT"),
-        "db_name": os.getenv("POSTGREST_DATABASE")
+        "db_host": env.get("POSTGREST_HOST"),
+        "db_user": env.get("POSTGREST_USER"),
+        "db_pass": env.get("POSTGREST_PASSWORD"),
+        "db_port": env.get("POSTGREST_PORT"),
+        "db_name": env.get("POSTGREST_DATABASE")
     }
 
     return settings
@@ -29,7 +30,7 @@ def tabela_existe(engine, nome_tabela):
 def executa_query(engine, query: str):
     """Execute a query on the database"""
     with engine.connect() as conn, conn.begin():
-        conn.execute(query)
+        conn.execute(text(query))
 
 def guess_encoding(file):
     """Guess the encoding of the given file"""
@@ -73,8 +74,15 @@ def main():
     # Create database connection string
     connection_string = f"postgresql://{settings['db_user']}:{settings['db_pass']}@{settings['db_host']}:{settings['db_port']}/{settings['db_name']}"
     
-    # Create engine
-    engine = create_engine(connection_string)
+    try:
+        # Create engine
+        engine = create_engine(connection_string)
+
+        # Test connection
+        with engine.connect():
+            print("Connection successful!")
+    except Exception as e:
+        print("Error establishing connection:", e)
 
     # List of SQL files to be executed
     arquivos_sql = [
@@ -92,7 +100,7 @@ def main():
         # Read SQL file content with guessed encoding
         with open(sql_file_path, 'r', encoding=guess_encoding(sql_file_path)) as file:
             sql_query = str.replace(file.read(), '\n', '')
-
+        
         # Get table name
         nome_tabela = get_table_name_from_create_query(sql_query)
 
