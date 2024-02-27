@@ -1,4 +1,4 @@
-site_name: Default Project Documentation
+site_name: ETL Data Quality Project
 
 theme:
   name: "material"
