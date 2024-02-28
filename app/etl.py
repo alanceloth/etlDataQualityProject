@@ -2,22 +2,23 @@ import os
 from pathlib import Path
 import pandas as pd
 import pandera as pa
-from dotenv import load_dotenv
+from dotenv import dotenv_values
 from sqlalchemy import create_engine
-from app.schema import ProductSchema, ProductSchemaKPI
+from schema import ProductSchema, ProductSchemaKPI
 import duckdb
+from sqlalchemy.sql import text
 
 def load_settings():
     """Load settings from .env file"""
     env_path = Path.cwd() / '.env'
-    load_dotenv(dotenv_path=env_path)
-
+    #load_dotenv(dotenv_path=env_path)
+    env = dotenv_values(env_path, encoding="utf-8")
     settings = {
-        "db_host": os.getenv("POSTGREST_HOST"),
-        "db_user": os.getenv("POSTGREST_USER"),
-        "db_pass": os.getenv("POSTGREST_PASSWORD"),
-        "db_port": os.getenv("POSTGREST_PORT"),
-        "db_name": os.getenv("POSTGREST_DATABASE")
+        "db_host": env.get("POSTGREST_HOST"),
+        "db_user": env.get("POSTGREST_USER"),
+        "db_pass": env.get("POSTGREST_PASSWORD"),
+        "db_port": env.get("POSTGREST_PORT"),
+        "db_name": env.get("POSTGREST_DATABASE")
     }
 
     return settings
@@ -38,7 +39,7 @@ def extract(query: str) -> pd.DataFrame:
     engine = create_engine(connection_string)
     
     with engine.connect() as conn, conn.begin():
-        df_crm = pd.read_sql(query, conn)
+        df_crm = pd.read_sql(text(query), conn)
     
     return df_crm
 
@@ -65,7 +66,7 @@ def transform(df: pd.DataFrame) -> pd.DataFrame:
 
     return df
 
-@pa.check_input(ProductSchema, lazy=True)
+@pa.check_input(ProductSchemaKPI, lazy=True)
 def load(df: pd.DataFrame, table_name: str, db_file: str = 'my_duckdb.db'):
     """
     Carrega o DataFrame no DuckDB, criando ou substituindo a tabela especificada.
@@ -90,7 +91,18 @@ if __name__ == "__main__":
     df_crm = extract(query=query)
     df_crm_kpi = transform(df_crm)
 
-    with open("inferred_schema.json", "r") as file:
-         file.write(df_crm_kpi.to_json())
+    print(df_crm)
+    schema_crm = pa.infer_schema(df_crm)
+    with open("infered_schema.py", "w", encoding="utf-8") as arquivo:
+         arquivo.write(schema_crm.to_script())
+
+    print(df_crm_kpi)
+    schema_crm = pa.infer_schema(df_crm_kpi)
+    with open("infered_schema_kpi.py", "w", encoding="utf-8") as arquivo:
+         arquivo.write(schema_crm.to_script())
+
+    # with open("inferred_schema.json", "r") as file:
+    #      file.write(df_crm_kpi.to_json())
+
 
     load(df=df_crm_kpi, table_name="tabela_kpi")
