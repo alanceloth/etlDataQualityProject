@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "mydefaultdataproject"
+name = "etlDataQualityProject"
 version = "0.1.0"
 description = ""
 authors = ["Alan Lanceloth Rodrigues Silva <alan.lanceloth@gmail.com>"]
