@@ -2,7 +2,7 @@ import os
 import io
 import locale
 from pathlib import Path
-from dotenv import load_dotenv, dotenv_values
+from dotenv import dotenv_values
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.sql import text
 
@@ -105,10 +105,13 @@ def main():
         nome_tabela = get_table_name_from_create_query(sql_query)
 
         # Check if table exists
+        if "INSERT INTO" in sql_query:
+            executa_query(engine, sql_query)
+            print(f"Tabela {nome_tabela} populada com sucesso.")
         if not tabela_existe(engine, nome_tabela):
             # Execute query
             executa_query(engine, sql_query)
-            print(f"Tabela {nome_tabela} criada e/ou populada com sucesso.")
+            print(f"Tabela {nome_tabela} criada com sucesso.")
         else:
             print(f"A tabela {nome_tabela} já existe no banco de dados.")
 
