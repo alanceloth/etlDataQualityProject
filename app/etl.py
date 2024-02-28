@@ -1,12 +1,16 @@
+import sys
 import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from pathlib import Path
 import pandas as pd
 import pandera as pa
 from dotenv import dotenv_values
 from sqlalchemy import create_engine
-from schema import ProductSchema, ProductSchemaKPI
+from app.schema import ProductSchema, ProductSchemaKPI
 import duckdb
 from sqlalchemy.sql import text
+
+
 
 def load_settings():
     """Load settings from .env file"""
