@@ -7,9 +7,12 @@ from app.etl import transform
 def test_calculo_valor_total_estoque():
     # Preparação
     df = pd.DataFrame({
+        'id_produto': [1, 2],
+        'nome': ['blusa', 'camisa'],
         'quantidade': [10, 5],
         'preco': [20.0, 100.0],
-        'categoria': ['brinquedos', 'eletrônicos']
+        'categoria': ['brinquedos', 'eletrônicos'],
+        'email': ['produtoA@example.com', 'produtoB@example.com']
     })
     expected = pd.Series([200.0, 500.0], name='valor_total_estoque')
 
@@ -22,9 +25,12 @@ def test_calculo_valor_total_estoque():
 def test_normalizacao_categoria():
     # Preparação
     df = pd.DataFrame({
+        'id_produto': [1, 2],
+        'nome': ['blusa', 'camisa'],
         'quantidade': [1, 2],
         'preco': [10.0, 20.0],
-        'categoria': ['brinquedos', 'eletrônicos']
+        'categoria': ['brinquedos', 'eletrônicos'],
+        'email': ['produtoA@example.com', 'produtoB@example.com']
     })
     expected = pd.Series(['BRINQUEDOS', 'ELETRÔNICOS'], name='categoria_normalizada')
 
@@ -37,9 +43,12 @@ def test_normalizacao_categoria():
 def test_determinacao_disponibilidade():
     # Preparação
     df = pd.DataFrame({
+        'id_produto': [1, 2],
+        'nome': ['blusa', 'camisa'],
         'quantidade': [0, 2],
         'preco': [10.0, 20.0],
-        'categoria': ['brinquedos', 'eletrônicos']
+        'categoria': ['brinquedos', 'eletrônicos'],
+        'email': ['produtoA@example.com', 'produtoB@example.com']
     })
     expected = pd.Series([False, True], name='disponibilidade')
 

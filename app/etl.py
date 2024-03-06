@@ -63,7 +63,7 @@ def transform(df: pd.DataFrame) -> pd.DataFrame:
     df['valor_total_estoque'] = df['quantidade'] * df['preco']
     
     # Normalizar categoria para maiúsculas
-    df['categoria_normalizada'] = df['categoria'].str.lower()
+    df['categoria_normalizada'] = df['categoria'].str.upper()
     
     # Determinar disponibilidade (True se quantidade > 0)
     df['disponibilidade'] = df['quantidade'] > 0

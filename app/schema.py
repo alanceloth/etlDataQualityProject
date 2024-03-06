@@ -20,7 +20,7 @@ class ProductSchema(pa.SchemaModel):
     """
     id_produto: Series[int]
     nome: Series[str]
-    quantidade: Series[int] = pa.Field(ge=20, le=200)
+    quantidade: Series[int] = pa.Field(ge=0, le=200)
     preco: Series[float] = pa.Field(ge=05.0, le=120.0)
     categoria: Series[str]
     email: Series[str] = pa.Field(regex=email_regex)
