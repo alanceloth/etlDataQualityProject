@@ -89,7 +89,10 @@ def load(df: pd.DataFrame, table_name: str, db_file: str = 'my_duckdb.db'):
     con.close()
 
 
-if __name__ == "__main__":
+def main():
+    """
+    A function that performs a series of extract, transform, and load operations using SQL queries and DataFrame manipulation, and writes inferred schemas to files.
+    """
     
     query = "SELECT * FROM produtos_bronze_email"
     df_crm = extract(query=query)
