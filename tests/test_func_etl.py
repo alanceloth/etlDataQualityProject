@@ -5,6 +5,9 @@ import pandas as pd
 from app.etl import transform
 
 def test_calculo_valor_total_estoque():
+    """
+    Test for the calculation of the total stock value, including preparation, action, and verification steps.
+    """
     # Preparação
     df = pd.DataFrame({
         'id_produto': [1, 2],
@@ -23,6 +26,9 @@ def test_calculo_valor_total_estoque():
     pd.testing.assert_series_equal(result['valor_total_estoque'], expected)
 
 def test_normalizacao_categoria():
+    """
+    Test function for normalizing category data.
+    """
     # Preparação
     df = pd.DataFrame({
         'id_produto': [1, 2],
@@ -41,6 +47,9 @@ def test_normalizacao_categoria():
     pd.testing.assert_series_equal(result['categoria_normalizada'], expected)
 
 def test_determinacao_disponibilidade():
+    """
+    Test function for determining availability. Sets up a test DataFrame and an expected result, then calls the transform function and verifies the result using pd.testing.assert_series_equal.
+    """
     # Preparação
     df = pd.DataFrame({
         'id_produto': [1, 2],
