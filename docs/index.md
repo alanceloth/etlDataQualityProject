@@ -33,6 +33,16 @@ graph TD;
 ## Salvar no DuckDB
 ::: app.etl.load
 
+# Testes
+
+## Teste calculo do valor total de estoque
+::: tests.test_func_etl.test_calculo_valor_total_estoque
+
+## Teste normalização de categoria
+::: tests.test_func_etl.test_normalizacao_categoria
+
+## Teste de determinação de disponibilidade
+::: tests.test_func_etl.test_determinacao_disponibilidade
 
 -----------------------------------
 
